@@ -1,0 +1,219 @@
+.panel-heading {
+    background: #fff;
+    padding-top: 20px;
+    border:0 !important;
+    border-radius: 0;
+    border-top: 4px solid #3D70B2 !important;
+}
+.panel {
+    border: 1px solid #ccc;
+    width: 100%;
+}
+.panel-block {
+    border:0;
+    display: block;
+    padding: 10px 15px;
+}
+.label {
+    font-family: "IBM Plex Sans",sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
+    font-size: 14px;
+    color: #152935;
+}
+form {
+    width: 100%;
+}
+.input {
+    padding-right: 30px;
+}
+.input,.textarea {
+    background: #fff;
+    border: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    width: 100%;
+    outline: none !important;
+}
+.input,.textarea:focus,.input,.textarea:hover {
+    outline: none !important;
+}
+.field {
+    padding-bottom: 20px;
+}
+
+.generate-button {
+    font-family: "IBM Plex Sans",sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 25px;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #3D70B2 !important;
+    border: none;
+}
+
+.button {
+    font-family: "IBM Plex Sans",sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #3D70B2 !important;
+    border-radius: 0;
+
+}
+.button:not(.cancel-button):hover {
+    color: #fff;
+}
+.table {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #DFE3E6;
+    margin: 0 !important;
+}
+.table thead {
+    background: #F4F7FB;
+    box-sizing: border-box;
+}
+.table tbody td {
+    border-bottom: 1px solid #DFE3E6;
+    padding: 0 13px;
+    line-height: 44px;
+}
+.dropdown-menu:before {
+    content: " ";
+    position: absolute;
+    top:-5px;
+    right: 15px;
+    background: #fff;
+    border: 1px solid #DFE3E6;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transform: matrix(0.70, -0.70, 0.70, 0.70, 0, 0);
+    width: 20px;
+    height: 20px;
+    z-index: -1;
+}
+.dropdown-menu:after {
+    content: " ";
+    position: absolute;
+    top: 3px;
+    right: 15px;
+    background: #fff;
+    width: 20px;
+    height: 10px;
+}
+.dropdown.is-right .dropdown-menu {
+    right: -2px;
+}
+.dropdown-divider {
+    background-color: #DFE3E6;
+}
+
+.is-blur{
+    filter: blur(3px);
+    overflow: hidden;
+}
+.modal-background {
+    background: none;
+}
+.modal {
+    overflow: auto;
+}
+.modal-card {
+    display: inline-table;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.modal-card-foot {
+    background: #F4F7FB;
+    display: block;
+    padding: 20px 10px;
+    margin-top: 30px;
+}
+
+/** Checkbox **/
+input.checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+label.checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+label.checkbox input:checked ~ .checkmark {
+    background-color: #3D70B2;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+label.checkbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+label.checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+label.checkbox .checkmark:after {
+    left: 6px;
+    top: 0;
+    width: 7px;
+    height: 13px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(34deg);
+}
+
+.select {
+    width: 100%;
+}
+.select select{
+    border: 0;
+    border-bottom: 1px solid #5A6872;
+    border-radius: 0;
+    width: 100%;
+}
+.select:not(.is-multiple):not(.is-loading)::after {
+    background: url(../svg/car.svg) no-repeat center center;
+    background-size: contain;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    right: 5px;
+    top: 20px;
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    border: 0;
+}
+.checkbox, .radio {
+    font-size: 15px;
+    margin: 5px;
+}
