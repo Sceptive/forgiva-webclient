@@ -68,8 +68,21 @@ $ yarn build
 
 ### Development
 
+To fasten development with latest version of Forgiva Integrator you can launch 
+a custom container which mounts current dist folder into the container runtime.
+
+You can use FORGIVA_WC_ROOT_DIR environment variable to redirect web server into
+the build environment.
+
+
 ```
 $ docker run -ti -p 8443:8443 -v <webclient-directory>/dist:/webclient -e FORGIVA_WC_ROOT_DIR=/webclient  forgiva_integrator:latest
+```
+
+And automate building with **watch** parameter of build.sh
+
+```
+$ ./build.sh watch
 ```
 
 ### Errors
