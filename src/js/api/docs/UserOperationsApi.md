@@ -4,6 +4,8 @@ All URIs are relative to *https://localhost:8443/api*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**postUserBackupExport**](UserOperationsApi.md#postUserBackupExport) | **POST** /user/backup/export | Exports metadatas as backup file
+[**postUserBackupImport**](UserOperationsApi.md#postUserBackupImport) | **POST** /user/backup/import | Imports metadatas from backup file
 [**postUserGenerate**](UserOperationsApi.md#postUserGenerate) | **POST** /user/generate | Generating password
 [**postUserMetadataAdd**](UserOperationsApi.md#postUserMetadataAdd) | **POST** /user/metadata/add | Adding metadata
 [**postUserMetadataBygroup**](UserOperationsApi.md#postUserMetadataBygroup) | **POST** /user/metadata/by_group | Retrieving metadata
@@ -17,6 +19,100 @@ Method | HTTP request | Description
 [**postUserSettingsGet**](UserOperationsApi.md#postUserSettingsGet) | **POST** /user/settings/get | Getting user&#39;s choices
 [**postUserSettingsSet**](UserOperationsApi.md#postUserSettingsSet) | **POST** /user/settings/set | Setting user&#39;s choices
 
+
+
+## postUserBackupExport
+
+> OperationResult postUserBackupExport(opts)
+
+Exports metadatas as backup file
+
+This service exports metadatas both as group and whole. If succeeds returns base64 encoded string of JSON data in resultData field in operationResult object. If no metadata group ID is specified then returns all of user&#39;s metadatas. 
+
+### Example
+
+```javascript
+import IntegratorApi from 'integrator_api';
+
+let apiInstance = new IntegratorApi.UserOperationsApi();
+let opts = {
+  'postUserBackupExportRequest': new IntegratorApi.PostUserBackupExportRequest() // PostUserBackupExportRequest | 
+};
+apiInstance.postUserBackupExport(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postUserBackupExportRequest** | [**PostUserBackupExportRequest**](PostUserBackupExportRequest.md)|  | [optional] 
+
+### Return type
+
+[**OperationResult**](OperationResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## postUserBackupImport
+
+> OperationResult postUserBackupImport(opts)
+
+Imports metadatas from backup file
+
+This service imports metadatas exported from /user/backup/export service. 
+
+### Example
+
+```javascript
+import IntegratorApi from 'integrator_api';
+
+let apiInstance = new IntegratorApi.UserOperationsApi();
+let opts = {
+  'postUserBackupImportRequest': new IntegratorApi.PostUserBackupImportRequest() // PostUserBackupImportRequest | 
+};
+apiInstance.postUserBackupImport(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postUserBackupImportRequest** | [**PostUserBackupImportRequest**](PostUserBackupImportRequest.md)|  | [optional] 
+
+### Return type
+
+[**OperationResult**](OperationResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
 ## postUserGenerate

@@ -33,10 +33,9 @@ header {
 .logo-wrap {
     text-align: left;
     display: inline-block;
-    padding: 10px;
+    padding-top: 10px;
 }
 .logo {
-    font-family: "Norwester",sans-serif;
     line-height: normal;
     font-size: 22px;
     color: #152935;
@@ -244,6 +243,16 @@ footer {
     border-left: 5px solid #5AA700;
 }
 
+.notify-info {
+    border: 1px solid #5596E6;
+    border-left: 5px solid #5596E6;
+}
+
+
+.notify-info .notify-title:before {
+    background: url("../svg/info.svg") no-repeat center center;
+}
+
 .notify-error .notify-title:before {
     background: url("../svg/error.svg") no-repeat center center;
 }
@@ -259,6 +268,7 @@ footer {
     color: #152934;
     min-width: 80px;
     position: relative;
+    vertical-align: top;
 }
 .notify-title:before{
     content: " ";
@@ -310,10 +320,14 @@ main {
     position: relative;
     flex-direction: column;
     justify-content: flex-start;
+
 }
 .aside .menu {
     width: 100%;
     padding-top: 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
 }
 .aside .menu a {
     position: relative;
@@ -400,6 +414,8 @@ main {
     margin-right: 20px;
     margin-left: 10px;
 }
+
+
 .remove-button {
     background: url("../svg/remove.svg") no-repeat center center;
     background-size: contain;
@@ -522,6 +538,18 @@ button i {
 }
 i.add {
     background-image: url("../svg/add-white.svg");
+}
+
+i.execute {
+    background-image: url("../svg/execute.svg");
+}
+
+i.export {
+    background-image: url("../svg/export.svg");
+}
+
+i.import {
+    background-image: url("../svg/import.svg");
 }
 
 .steps {

@@ -3,6 +3,7 @@ import { ErrorField, Modal, AsyncSelect, Slider } from '../components'
 
 import  GeneratePassword  from '../modals/generatePassword'
 import global_data from '../global'
+import etc from '../etc'
 import { PostUserMetadataAddRequest, Metadata } from '../api/src'
 
 export default props => {
@@ -59,18 +60,17 @@ export default props => {
 
                 } else {
 					props.fUpdateMetadatas();
-					console.log(operationResult);
 					if (operationResult.affectedRecords != null &&
 						operationResult.affectedRecords[0] != null) {
-							let new_metadata_id = operationResult.affectedRecords[0];
+						let new_metadata_id = operationResult.affectedRecords[0];
+						md.metadataId = new_metadata_id;
 
-							console.log("New metadata id: "+new_metadata_id);
-							console.log(new_metadata_id);
-							setModal(null);
+						setModal(null);
 
-							if (routeToGenerate) {
-								setModal((<GeneratePassword metadataId={new_metadata_id} />));
-							}
+						if (routeToGenerate) {
+							setModal((<GeneratePassword 
+										metadata={md} />));
+						}
 					} else {
 						setError("Could not save the record");
 					}
@@ -86,11 +86,40 @@ export default props => {
 		}
 	}
 
+	React.useEffect(() => {
+		etc.get_setting(global_data.settings_keys.settingsPdc, 
+					(perror,value) => {
+
+				if (perror) {
+					setError(perror.message);
+				} else {
+					setComplexity(parseInt(value));
+				}
+
+		});
+
+		etc.get_setting(global_data.settings_keys.settingsPdl, 
+						(perror,value) => {
+
+					if (perror) {
+						setError(perror.message);
+					} else {
+						setLength(parseInt(value));
+					}
+
+		});
+	},[]);
+
 	
-	return (<Modal title="Add New Metadata" desc="Please enter your designated metadata"
+	return (<Modal title="Add New Metadata" 
+					desc={
+					 (!loading && !adding) ?
+					 "Please enter your designated metadata"
+					 : "Processing.."
+					}
 		action={() => addHost(false)} actionName={"Save"} close={true} 
 		secondAction={() => addHost(true)} secondActionName="Save & Generate" >
-		{!loading && <>
+		{!loading && !adding && <>
 			<div className="columns">
 				<div className="field column">
 					<div className="control">
@@ -115,27 +144,50 @@ export default props => {
 					<label className="label">Complexity</label>
 					<div className="has-text-centered">
 						<div className="steps editable">
-							<div onClick={() => setComplexity(1)} className={"step " + (complexity >= 1 ? "active" : "")}></div>
-							<div onClick={() => setComplexity(2)} className={"step " + (complexity >= 2 ? "active" : "")}></div>
-							<div onClick={() => setComplexity(3)} className={"step " + (complexity >= 3 ? "active" : "")}></div>
+							<div onClick={() => setComplexity(1)} 
+								className={"step " + (complexity >= 1 
+												? "active" : "")}></div>
+							<div onClick={() => setComplexity(2)} 
+								className={"step " + (complexity >= 2 
+												? "active" : "")}></div>
+							<div onClick={() => setComplexity(3)} 
+								className={"step " + (complexity >= 3 
+												? "active" : "")}></div>
 						</div>
 					</div>
 				</div>
 				<div className="field column is-two-fifths">
 					<label className="label">Password Length</label>
 					<div className="has-text-centered">
-						<label style={{ float: 'left', marginLeft: -15, marginTop: 2, fontSize: 12 }} >1</label>
-						<label style={{ float: 'right', marginRight: -16, marginTop: 2, fontSize: 12 }} >32</label>
-						<Slider min={1} max={32} value={length} onChange={e => setLength(e)}
-							handleStyle={{ backgroundColor: '#3D70B2', border: 'none', width: 24, height: 24 }}
-							railStyle={{ backgroundColor: '#8897A2', marginTop: 4 }}
-							trackStyle={{ backgroundColor: '#3D70B2', marginTop: 4 }} />
+						<label style={{ float: 'left', 
+										marginLeft: -15, 
+										marginTop: 2, 
+										fontSize: 12 }} >1</label>
+						<label style={{ float: 'right', 
+										marginRight: -16, 
+										marginTop: 2, 
+										fontSize: 12 }} >32</label>
+						<Slider min={1} 
+								max={32} 
+								value={length} 
+							onChange={e => setLength(e)}
+							handleStyle={{ backgroundColor: '#3D70B2', 
+											border: 'none', 
+											width: 24, 
+											height: 24 }}
+							railStyle={{ backgroundColor: '#8897A2', 
+											marginTop: 4 }}
+							trackStyle={{ backgroundColor: '#3D70B2', 
+											marginTop: 4 }} />
 
 					</div>
 				</div>
 				<div className="field column">
 					<label className="label"
-						style={{ borderBottom: "1px solid grey", height: 50, paddingTop: 25, textAlign: 'center' }}>
+						style={{ borderBottom: "1px solid grey", 
+									height: 50, 
+									paddingTop: 25, 
+									textAlign: 'center' }}>
 						{length}
 					</label>
 				</div>
@@ -144,24 +196,36 @@ export default props => {
 				<div className="field column">
 					<div className="control has-text-centered ">
 						<label className="checkbox w100">
-							<input type="checkbox" checked={uppercase} onChange={e => setUppercase(!uppercase)} />
-							<div className="checkmark"><span className="label">Uppercase</span></div>
-							
+							<input type="checkbox" 
+									checked={uppercase} 
+									onChange={e => setUppercase(!uppercase)} />
+							<div className="checkmark">
+								<span className="label">Uppercase</span>
+							</div>
                     </label>
 						<label className="checkbox w100">
-							<input type="checkbox" checked={lowercase} onChange={e => setLowercase(!lowercase)} />
-							<div className="checkmark"><span className="label">Lowercase</span></div>
-							
+							<input type="checkbox" 
+									checked={lowercase}
+									onChange={e => setLowercase(!lowercase)} />
+							<div className="checkmark">
+								<span className="label">Lowercase</span>
+							</div>
                     </label>
 						<label className="checkbox w100">
-							<input type="checkbox" checked={numbers} onChange={e => setNumbers(!numbers)} />
-							<div className="checkmark"><span className="label">Numbers</span></div>
-							
+							<input type="checkbox" 
+									checked={numbers} 
+									onChange={e => setNumbers(!numbers)} />
+							<div className="checkmark">
+								<span className="label">Numbers</span>
+							</div>
                     </label>
 						<label className="checkbox w100">
-							<input type="checkbox" checked={symbols} onChange={e => setSymbols(!symbols)} />
-							<div className="checkmark"><span className="label">Symbols</span></div>
-							
+							<input type="checkbox" 
+									checked={symbols} 
+									onChange={e => setSymbols(!symbols)} />
+							<div className="checkmark">
+								<span className="label">Symbols</span>
+							</div>
               			</label>
 					</div>
 				</div>

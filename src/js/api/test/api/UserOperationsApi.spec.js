@@ -48,6 +48,26 @@
   }
 
   describe('UserOperationsApi', function() {
+    describe('postUserBackupExport', function() {
+      it('should call postUserBackupExport successfully', function(done) {
+        //uncomment below and update the code to test postUserBackupExport
+        //instance.postUserBackupExport(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('postUserBackupImport', function() {
+      it('should call postUserBackupImport successfully', function(done) {
+        //uncomment below and update the code to test postUserBackupImport
+        //instance.postUserBackupImport(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('postUserGenerate', function() {
       it('should call postUserGenerate successfully', function(done) {
         //uncomment below and update the code to test postUserGenerate

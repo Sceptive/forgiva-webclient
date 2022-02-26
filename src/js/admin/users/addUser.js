@@ -1,7 +1,6 @@
 import React from 'reactn'
 import { ErrorField, Modal, AsyncSelect, Slider,HiddenInput } from '../../components'
 import axios from 'axios'
-import { GeneratePassword } from '.';
 import global_data from '../../global'
 import { User,PostAdminUserAddRequest } from '../../api/src';
 import etc from '../../etc'
@@ -34,23 +33,17 @@ export default props => {
 
 
 
-			// let session_server_public_key  = etc.fg_hex_to_ui8arr(global_data.session_params.sessionPk);
-			// let session_client_private_key = global_data.nacl_keys.secretKey;
 	
 			let password_hash			   = fhash(global_data.session_params.hshAlg,
 				etc.fg_hex_to_ui8arr(global_data.session_params.hshSalt),
 				etc.fg_str_to_ui8arr(password));
-			// let empty_nonce 	= new Uint8Array(24);
-			// empty_nonce.fill(0);
-			// let nonce_header 	= "00000000000000000000000000000000";
-
+		
 			// crypto_box'ed password
-			//let c_password		= nonce_header+etc.fg_ui8arr_to_hex(nacl.box(password_hash,empty_nonce, session_server_public_key, session_client_private_key))
 			let c_password		= etc.fg_encrypt_for_session(password_hash);
 
-			console.log("hshAlg   		  : "+global_data.session_params.hshAlg+"\n"
-					   +"hshSalt   		  : "+global_data.session_params.hshSalt+"\n"
-			);
+			// console.log("hshAlg   		  : "+global_data.session_params.hshAlg+"\n"
+			// 		   +"hshSalt   		  : "+global_data.session_params.hshSalt+"\n"
+			// );
 
 			
 

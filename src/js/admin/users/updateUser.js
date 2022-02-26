@@ -1,6 +1,5 @@
 import React from 'reactn'
 import { ErrorField, Modal, AsyncSelect, Slider,HiddenInput } from '../../components'
-import { GeneratePassword } from '.';
 import global_data from '../../global'
 import { User,PostAdminUserUpdateRequest } from '../../api/src';
 

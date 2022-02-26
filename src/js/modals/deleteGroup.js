@@ -1,6 +1,7 @@
 import React from 'reactn'
 import {ErrorField, Modal} from '../components'
-import axios from 'axios'
+import { PostUserMetadataGroupRemoveRequest, MetadataGroup } from '../api/src'
+import global_data from '../global'
 
 
 export default props => {
@@ -13,10 +14,26 @@ export default props => {
 	let deleteGroup = async () => {
 		setDeleting(true)
 		try{
-			let res = await axios.post("/user_metadata_group_delete", {
-				session_id: session,
-				group_id: group.group_id
-			})
+
+			let remove_req = new PostUserMetadataGroupRemoveRequest();
+			remove_req.header 			= global_data.request_header;
+			remove_req.metadataGroupId 	= group.group_id;
+
+			global_data.user_api.postUserMetadataGroupRemove({
+					'postUserMetadataGroupRemoveRequest': remove_req
+				}, (error,operationResult, response) => {
+	
+	
+					if (operationResult.error != null) {
+						setError(operationResult.error);
+	
+					} else {
+						props.fUpdateGroups();
+						setModal(null);
+					}
+		
+				});
+
 			setDeleting(false)
 			if(res.data.error_message != null){
 				setError(res.data.error_message)
@@ -29,7 +46,8 @@ export default props => {
 		}
 	}
 
-	return (<Modal title="Deleting Group" action={deleteGroup} delete actionName="Delete" close={true}>
+	return (<Modal title="Deleting Group" 
+				action={deleteGroup} delete actionName="Delete" close={true}>
 				
 					<h3 className="panel-message has-text-centered margin-large">
 						Are you sure to delete group “{group.group_name}” contains {group.host_count} hosts?
@@ -42,6 +60,7 @@ export default props => {
 						</div>
 				</div>
 				}
-				{error && <ErrorField close={() => setError(null)} >{error}</ErrorField>}
+				{error && <ErrorField 
+							close={() => setError(null)} >{error}</ErrorField>}
 	</Modal>)
 }

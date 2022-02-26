@@ -1,7 +1,7 @@
 import React 	from 'reactn'
 import ReactDom from 'react-dom'
-import logoImg 	from '../img/logo.png'
-import {DefaultApi, PostNewSessionRequest, ApiClient, PostNewSessionResponse, Header, PostLoginRequest} from './api/src/index'
+import logoImg 	from '../svg/logo.svg'
+import {DefaultApi, PostNewSessionRequest, ApiClient, PostNewSessionResponse, Header, PostLoginRequest, PostLogin2faRequest} from './api/src/index'
 import fhash from './crypto/fhash'
 import global_data from './global'
 import etc from './etc'
@@ -12,7 +12,7 @@ import AdminHome from './admin'
 
 
 
-let Logo = ()=> <img src={logoImg} alt="sceptive" />
+let Logo = ()=> <img src={logoImg} alt="sceptive" style={{ height: '27px'}} />
 
 export default props => {
 	let [modal, setModal] 						= React.useGlobal("modal")
@@ -23,8 +23,19 @@ export default props => {
 	let [requires2fa,	setRequires2fa]			= React.useState(false);
 	let [username, 		setUsername] 			= React.useState('');
 	let [password, 		setPassword] 			= React.useState('');
-	let [loginOverLdap, setLoginOverLdap] 		= React.useState(true)
+	let [loginOverLdap, setLoginOverLdap] 		= React.useState(true);
+	let [code,          setCode]                = React.useState('');
 
+	let post_login = () => {
+
+		// Caching the settings for fast callback
+  		etc.get_setting(global_data.settings_keys.settingsAds,(e,cb) => {})	
+        etc.get_setting(global_data.settings_keys.settingsMui,(e,cb) => {})
+        etc.get_setting(global_data.settings_keys.settingsMao,(e,cb) => {})
+        etc.get_setting(global_data.settings_keys.settingsPasnc,(e,cb) => {})
+        etc.get_setting(global_data.settings_keys.settingsPdl,(e,cb) => {})
+        etc.get_setting(global_data.settings_keys.settingsPdc,(e,cb) => {})
+	}
 
 	let login = async () => {
 
@@ -87,7 +98,7 @@ export default props => {
 			} else {
 
 				// console.log(postLoginResponse);
-				if (postLoginResponse.logonState && postLoginResponse.logonState.authenticated == true) {
+				if (postLoginResponse.logonState) {
 
 					if (postLoginResponse.twoFARequired == true) {
 
@@ -95,18 +106,19 @@ export default props => {
 
 
 					} else {
-
-						global_data.is_admin = postLoginResponse.logonState.isAdmin;
-		
-						if (global_data.is_admin == true) {
-							
-							ReactDom.render(<AdminHome/>, document.getElementById("app"));
-
+						 if(postLoginResponse.logonState.authenticated == true){
+						 	global_data.is_admin = postLoginResponse.logonState.isAdmin;
+		 
+						 if (global_data.is_admin == true) {
+						 	
+						 	ReactDom.render(<AdminHome/>, document.getElementById("app"));
+ 
+						 } else {
+						 	ReactDom.render(<Home/>, document.getElementById("app"));
+						 }
 						} else {
-							ReactDom.render(<Home/>, document.getElementById("app"));
-						}
-						
-
+							setError("Invalid credentials.")
+						}		
 					}
 
 				} else {
@@ -118,9 +130,47 @@ export default props => {
 		});
 
 
-	
 	}
 
+	let loginTwoFa = async () => {
+
+		let request    = new PostLogin2faRequest();
+
+		request.twoFACode = code;
+		request.header = global_data.request_header;
+		
+		setIsLoggingIn(true);
+		global_data.public_api.postLogin2fa({
+			'postLogin2faRequest' : request
+		}, (perror,postLogin2faResponse, data ) => {
+
+			setIsLoggingIn(false);
+			if (perror) {
+				if (perror.status == 401) {
+					setError("Invalid credentials.");
+				} else {
+					setError("API Error");
+				}
+			} else {
+
+				// console.log(postLogin2faResponse);
+				if (postLogin2faResponse.authenticated == true) {
+					if (global_data.is_admin == true) {
+							
+						ReactDom.render(<AdminHome/>, document.getElementById("app"));
+
+					} else {
+
+						ReactDom.render(<Home/>, document.getElementById("app"));
+					}	
+				} else {
+					setError("Invalid credentials.")
+				}
+			}
+		});
+	}
+
+	
 	let handleKeyPress = (event) => {
 		if(event.key === 'Enter'){
 			login();
@@ -133,7 +183,7 @@ export default props => {
 		<div className={"body-wrap " + (modal ? "is-blur" : "") } >
 			<header>
 				<div className="logo-wrap" >
-						<div className="logo"><Logo /> <span className="logo-brand">Forgiva Enterprise</span></div>
+						<div className="logo"><Logo /> </div>
 				</div>
 
 			</header>
@@ -218,7 +268,7 @@ export default props => {
 						<div className="panel-footer" hidden={(isLoggingIn ? true : false)}>
 							<div className="field level-right">
 								<div className="control">
-									<button className="button is-link"  onClick={login} >
+									<button className="button is-link"  onClick={requires2fa ? loginTwoFa : login} >
 										{(requires2fa == false) ?
 											"Login" :
 											"Validate"}</button>

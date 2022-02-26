@@ -66,6 +66,12 @@ $ yarn build
 ```
 
 
+### Development
+
+```
+$ docker run -ti -p 8443:8443 -v <webclient-directory>/dist:/webclient -e FORGIVA_WC_ROOT_DIR=/webclient  forgiva_integrator:latest
+```
+
 ### Errors
 
 For error: Cannot resolve dependency '@babel/runtime-corejs2/helpers/slicedToArray'

@@ -48,6 +48,86 @@
   }
 
   describe('AdministratorOperationsApi', function() {
+    describe('postAdminApplicationAdd', function() {
+      it('should call postAdminApplicationAdd successfully', function(done) {
+        //uncomment below and update the code to test postAdminApplicationAdd
+        //instance.postAdminApplicationAdd(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('postAdminApplicationRemove', function() {
+      it('should call postAdminApplicationRemove successfully', function(done) {
+        //uncomment below and update the code to test postAdminApplicationRemove
+        //instance.postAdminApplicationRemove(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('postAdminApplicationUpdate', function() {
+      it('should call postAdminApplicationUpdate successfully', function(done) {
+        //uncomment below and update the code to test postAdminApplicationUpdate
+        //instance.postAdminApplicationUpdate(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('postAdminApplications', function() {
+      it('should call postAdminApplications successfully', function(done) {
+        //uncomment below and update the code to test postAdminApplications
+        //instance.postAdminApplications(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('postAdminHostAdd', function() {
+      it('should call postAdminHostAdd successfully', function(done) {
+        //uncomment below and update the code to test postAdminHostAdd
+        //instance.postAdminHostAdd(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('postAdminHostRemove', function() {
+      it('should call postAdminHostRemove successfully', function(done) {
+        //uncomment below and update the code to test postAdminHostRemove
+        //instance.postAdminHostRemove(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('postAdminHostUpdate', function() {
+      it('should call postAdminHostUpdate successfully', function(done) {
+        //uncomment below and update the code to test postAdminHostUpdate
+        //instance.postAdminHostUpdate(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
+    describe('postAdminHosts', function() {
+      it('should call postAdminHosts successfully', function(done) {
+        //uncomment below and update the code to test postAdminHosts
+        //instance.postAdminHosts(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
+    });
     describe('postAdminReports', function() {
       it('should call postAdminReports successfully', function(done) {
         //uncomment below and update the code to test postAdminReports

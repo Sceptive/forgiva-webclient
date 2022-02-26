@@ -57,6 +57,8 @@ import PostLoginResponse from './model/PostLoginResponse';
 import PostLogoutRequest from './model/PostLogoutRequest';
 import PostNewSessionRequest from './model/PostNewSessionRequest';
 import PostNewSessionResponse from './model/PostNewSessionResponse';
+import PostUserBackupExportRequest from './model/PostUserBackupExportRequest';
+import PostUserBackupImportRequest from './model/PostUserBackupImportRequest';
 import PostUserGenerateRequest from './model/PostUserGenerateRequest';
 import PostUserGenerateResponse from './model/PostUserGenerateResponse';
 import PostUserMetadataAddRequest from './model/PostUserMetadataAddRequest';
@@ -385,6 +387,18 @@ export {
      * @property {module:model/PostNewSessionResponse}
      */
     PostNewSessionResponse,
+
+    /**
+     * The PostUserBackupExportRequest model constructor.
+     * @property {module:model/PostUserBackupExportRequest}
+     */
+    PostUserBackupExportRequest,
+
+    /**
+     * The PostUserBackupImportRequest model constructor.
+     * @property {module:model/PostUserBackupImportRequest}
+     */
+    PostUserBackupImportRequest,
 
     /**
      * The PostUserGenerateRequest model constructor.

@@ -55,6 +55,18 @@ form {
     border: none;
 }
 
+.button-secondary {
+    font-family: "IBM Plex Sans",sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
+    font-size: 14px;
+    color: #FFFFFF;
+    background-color: #b2893d !important;
+    border-radius: 0;
+
+}
+
 .button {
     font-family: "IBM Plex Sans",sans-serif;
     font-style: normal;

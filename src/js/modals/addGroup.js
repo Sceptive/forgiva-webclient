@@ -54,10 +54,13 @@ export default props => {
 					<label className="label">Parent Group</label>
 					<div className="select" style={{ width: "100%" }}>
 						<select style={{ width: "100%" }}
-							value={parentGroupId} onChange={e => setParentGroupId(e.target.value)}>
+							value={parentGroupId} onChange={e => 
+								setParentGroupId(e.target.value)
+							}>
 							<option value={0}>(Empty)</option>
 							{props.groups && props.groups.map(g =>
-								<option key={g.groupId} value={g.groupId}>{g.groupName}</option>
+								<option key={g.groupId} 
+									value={g.groupId}>{g.groupName}</option>
 							)}
 
 						</select>
@@ -80,6 +83,8 @@ export default props => {
 				</div>
 			</div>
 		}
-		{error && <ErrorField close={() => setError(null)} >{error}</ErrorField>}
+		{error && <ErrorField close={() => 
+				setError(null)
+			} >{error}</ErrorField>}
 	</Modal>)
 }

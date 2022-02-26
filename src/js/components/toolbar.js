@@ -1,5 +1,4 @@
 import React from 'react'
-import Search 	from '../modals/search'
 
 
 export default props => {

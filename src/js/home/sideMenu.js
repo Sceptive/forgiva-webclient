@@ -4,6 +4,7 @@ import AddMetadataGroup from './addMetadataGroup'
 import DeleteMetadataGroup from './deleteMetadataGroup'
 import { PostUserMetadataGroupsRequest } from '../api/src'
 import global_data from '../global'
+import etc from '../etc'
 
 
 let Group = ({selectedGroup, setSelectedGroup, group}) => {
@@ -16,14 +17,19 @@ let Group = ({selectedGroup, setSelectedGroup, group}) => {
 	</li> )
 }
 export default props => {
-	let [groups, setGroups] 	            = React.useState(null)
+	let [error, setError]                   = React.useState(null)
+	let [groups, setGroups] 	            = React.useGlobal("groups")
 	let {selectedGroup, setSelectedGroup} 	= props
 	let [modal, setModal] 					= React.useGlobal("modal")
 	let [sideMenu, setSideMenu] 			= React.useGlobal('sideMenu')
-
+	let [isLoading, setLoading]             = React.useState(true)
+	
 
 	
-	let update_groups = () => {
+	
+	let update_groups = async () => {
+
+		setLoading(true);
 
         let req_nsr 		= new PostUserMetadataGroupsRequest();
         req_nsr.header 		= global_data.request_header;
@@ -49,12 +55,20 @@ export default props => {
                 setSelectedGroup(groups_[0])
             }
 
+			setLoading(false);
+
+
         });
     }
 
 	React.useEffect(() => {
 		if (groups == null) {
 			update_groups();
+
+			document.addEventListener('update_groups', e => {
+				update_groups();
+			});
+
 		}
 	}, [props.selectedGroup, groups])
 	
@@ -62,19 +76,42 @@ export default props => {
 	
 	if(!sideMenu) return(<> </>)
 	else
-	return (<div className={"aside level-left"}>
+	return (
+		
+		<div className={"aside level-left"}>
+		{isLoading &&
+		<ul className="menu">
+				<div className="progress">
+						<div className="spinner"></div>
+				</div>
+		</ul>
+		}
+
+		{!isLoading &&
+		<>
 		<ul className="menu">
 			{groups && groups.map(x => <Group key={x.groupId} group={x} 
-				selectedGroup={selectedGroup} setSelectedGroup={setSelectedGroup} />)}
+				selectedGroup={selectedGroup} 
+				setSelectedGroup={setSelectedGroup} />)}
 		</ul>
 		<div className="aside-footer">
-			<button className="add-button" onClick={() => setModal(<AddMetadataGroup groups={groups} fUpdateGroups={update_groups}/>) } ></button>
+			<button className="add-button" onClick={() => 
+					setModal(<AddMetadataGroup groups={groups} 
+						fUpdateGroups={update_groups}/>) } ></button>
 			{selectedGroup &&
 				<button className="remove-button" 
-					onClick={() => setModal(<DeleteMetadataGroup group={selectedGroup} fUpdateGroups={update_groups} />)}>
+					onClick={() => 
+						setModal(<DeleteMetadataGroup group={selectedGroup} 
+								fUpdateGroups={update_groups} />)}>
 				</button>
 			}
-			<button className="close-menu" onClick={() => setSideMenu(false)}></button>
+			<button className="close-menu" 
+					onClick={() => setSideMenu(false)}>
+			</button>
 		</div>
-	</div>)
+		</>
+		}
+		</div>
+		
+	)
 }

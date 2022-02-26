@@ -1,8 +1,7 @@
 import React 	from 'reactn'
 import SideMenu from './sideMenu'
-import logoImg 				from '../../../img/logo_admin.png'
 import CustomReport from './customReport'
-let Logo = ()=> <img src={logoImg} alt="sceptive" />
+
 
 
 // import SystemInformation 	from './system_information'

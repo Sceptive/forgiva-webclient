@@ -53,6 +53,9 @@ class OperationResult {
             if (data.hasOwnProperty('info')) {
                 obj['info'] = ApiClient.convertToType(data['info'], 'String');
             }
+            if (data.hasOwnProperty('resultData')) {
+                obj['resultData'] = ApiClient.convertToType(data['resultData'], 'String');
+            }
             if (data.hasOwnProperty('affectedRecords')) {
                 obj['affectedRecords'] = ApiClient.convertToType(data['affectedRecords'], ['String']);
             }
@@ -74,6 +77,12 @@ OperationResult.prototype['error'] = undefined;
  * @member {String} info
  */
 OperationResult.prototype['info'] = undefined;
+
+/**
+ * Any data related with operation result if available
+ * @member {String} resultData
+ */
+OperationResult.prototype['resultData'] = undefined;
 
 /**
  * In case of any data operation this returns id's of records. On adding new data this returns new record ids

@@ -2,8 +2,7 @@ import React 	from 'reactn'
 import SideMenu from './sideMenu'
 import SystemInformation 	from './system_information'
 import ResourceUsage 		from './resource_usage'
-import logoImg 				from '../../../img/logo_admin.png'
-let Logo = ()=> <img src={logoImg} alt="sceptive" />
+
 
 
 export default (props) => {	
@@ -12,9 +11,6 @@ export default (props) => {
 	let [sideMenu, setSideMenu] 					= React.useGlobal("sideMenu")
 	let [systemInformation, setSystemInformation] 	= React.useGlobal("system_information")
 
-	// { selectedMenuItem &&  (selectedMenuItem.item_id == 0) && <SystemInformation/> }
-	// { selectedMenuItem &&  (selectedMenuItem.item_id == 1) && <ResourceUsage/> }
-	// <SideMenu selectedMenuItem={selectedMenuItem} setSelectedMenuItem={setSelectedMenuItem} />
 
 	return (
 		<main>

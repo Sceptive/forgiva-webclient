@@ -1,61 +1,40 @@
 import React from 'reactn'
 import { ErrorField, Modal, AsyncSelect, Slider,HiddenInput } from '../components'
-
+import Switch from '@material-ui/core/Switch';
+import Wait from '../modals/wait';
 import global_data from '../global'
 import etc         from '../etc'
 
 
-import { PostUserPasswordChangeRequest } from '../api/src'
+import { PostUserPasswordChangeRequest,  PostUserSettingsGetRequest, PostUser2faSettingVerificationRequest } from '../api/src'
+import { set } from 'js-cookie';
 
 export default props => {
 
-    let [error, 	   setError]			= React.useState(null);
-    let [success, 	   setSuccess]			= React.useState(null);
-	let [isChanging,   setIsChanging]		= React.useState(false)
+    let [error, 	        setError]		      = React.useState(null);
+    let [success, 	        setSuccess]		      = React.useState(null);
+	let [isChanging,        setIsChanging]	      = React.useState(null);
+    let [checked,           setChecked]           = React.useState(null);
+    let [verificationTwoFa, setVerificationTwoFa] = React.useState(null);
+    let [verificationCode,  setVerificationCode]  = React.useState(null);
 
+	
+
+
+    React.useEffect(() => {
+        getSetting();
+        check_twofa_code_setting(true);
+	})
+
+   
+ 
     
-	let changePassword = async () => {
-		setIsChanging(true)
-		try {
-
-
-            let req_nsr 		= new PostUserPasswordChangeRequest();
-            req_nsr.header 		= global_data.request_header;
-
-            req_nsr.newPassword     = etc.fg_encrypt_for_session(etc.fg_str_to_ui8arr(newPassword));
-            req_nsr.oldPassword     = etc.fg_encrypt_for_session(etc.fg_str_to_ui8arr(curent));
-
-            // Save data
-            global_data.user_api.postUserPasswordChange({
-                'postUserPasswordChangeRequest': req_nsr
-            }, (error,operationResult, response) => {
-
-
-                setIsChanging(false);
-                if (operationResult.error != null) {
-                    setError(operationResult.error);
-
-                } else {
-
-                    setSuccess("Password changed.");
-                    etc.logout(); 
-                    
-                }
     
-            });
-
-		
-		} catch (e) {
-            console.log("setError");
-			setError(e.message)
-		}
-	}
-
 
     return (<>
-            <div style={{ margin: '10px', width: '100%', height: '289px', lineHeight: '289px', fontWeight: 600, textAlign: 'center', display: 'inline-block' }}>
-                2FA is not configured
-            </div>
-           </> 
-         );
+        <div style={{ margin: '10px', width: '100%', height: '289px', lineHeight: '100px', fontWeight: 600, textAlign: 'center', display: 'inline-block' }}>
+           Will be implemented
+        </div>
+      </> 
+     );
 }

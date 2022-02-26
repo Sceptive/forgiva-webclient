@@ -146,6 +146,8 @@ Class | Method | HTTP request | Description
 *IntegratorApi.DefaultApi* | [**postLogin2fa**](docs/DefaultApi.md#postLogin2fa) | **POST** /login2fa | Login with two-factor-authentication
 *IntegratorApi.DefaultApi* | [**postLogout**](docs/DefaultApi.md#postLogout) | **POST** /logout | Logout
 *IntegratorApi.DefaultApi* | [**postNewSession**](docs/DefaultApi.md#postNewSession) | **POST** /new_session | Initialization or validation of a session
+*IntegratorApi.UserOperationsApi* | [**postUserBackupExport**](docs/UserOperationsApi.md#postUserBackupExport) | **POST** /user/backup/export | Exports metadatas as backup file
+*IntegratorApi.UserOperationsApi* | [**postUserBackupImport**](docs/UserOperationsApi.md#postUserBackupImport) | **POST** /user/backup/import | Imports metadatas from backup file
 *IntegratorApi.UserOperationsApi* | [**postUserGenerate**](docs/UserOperationsApi.md#postUserGenerate) | **POST** /user/generate | Generating password
 *IntegratorApi.UserOperationsApi* | [**postUserMetadataAdd**](docs/UserOperationsApi.md#postUserMetadataAdd) | **POST** /user/metadata/add | Adding metadata
 *IntegratorApi.UserOperationsApi* | [**postUserMetadataBygroup**](docs/UserOperationsApi.md#postUserMetadataBygroup) | **POST** /user/metadata/by_group | Retrieving metadata
@@ -206,6 +208,8 @@ Class | Method | HTTP request | Description
  - [IntegratorApi.PostLogoutRequest](docs/PostLogoutRequest.md)
  - [IntegratorApi.PostNewSessionRequest](docs/PostNewSessionRequest.md)
  - [IntegratorApi.PostNewSessionResponse](docs/PostNewSessionResponse.md)
+ - [IntegratorApi.PostUserBackupExportRequest](docs/PostUserBackupExportRequest.md)
+ - [IntegratorApi.PostUserBackupImportRequest](docs/PostUserBackupImportRequest.md)
  - [IntegratorApi.PostUserGenerateRequest](docs/PostUserGenerateRequest.md)
  - [IntegratorApi.PostUserGenerateResponse](docs/PostUserGenerateResponse.md)
  - [IntegratorApi.PostUserMetadataAddRequest](docs/PostUserMetadataAddRequest.md)

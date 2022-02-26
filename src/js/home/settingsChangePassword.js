@@ -42,7 +42,25 @@ export default props => {
                 } else {
 
                     setSuccess("Password changed.");
-                    etc.logout(); 
+                    etc.logout((perror, response) => {
+
+                        if (perror) {
+                            if (perror.status == 401) {
+                                setError("Invalid credentials.");
+                            } else {
+                                setError("API Error");
+                            }
+                        } else {  
+                            localStorage["session_id"] = null;
+                            global_data.request_header = null;
+                            global_data.session_params = null;
+                            global_data.nacl_keys      = null;
+                            global_data.is_admin       = false;
+                            
+                            window.location.reload(false);
+                        }   
+
+                    }); 
                     
                 }
     
@@ -82,8 +100,8 @@ export default props => {
 								</div>
 					}
                     {success !== null &&
-								<div className="field" style={{ "width": '100%', "line-height": '1.3' }}>
-									<div className="notify notify-success" style={{ "margin-left": '10px'}}>
+								<div className="field" style={{ "width": '100%', lineHeight: '1.3' }}>
+									<div className="notify notify-success" style={{ marginLeft: '10px'}}>
 										<div className="notify-title">Success:</div>
 										<div className="notify-desc"> {success}</div>										
 									</div>

@@ -2,6 +2,10 @@ import global_data  from './global'
 import assert       from 'minimalistic-assert'
 import nacl         from './crypto/nacl.min'
 import React, { useEffect, useState } from "react";
+import { PostUserMetadataAddRequest, PostUserSettingsGetRequest, PostUserSettingsSetRequest, Metadata } from './api/src'
+
+import { PostLogoutRequest } from './api/src'
+
 
 function fg_ui8arr_to_hex(uint8arr) {
     if (!uint8arr) {
@@ -48,7 +52,7 @@ function fg_encrypt_for_session(data) {
     // crypto_box'ed password
     let ret_data		= nonce_header+fg_ui8arr_to_hex(nacl.box(data,empty_nonce, session_server_public_key, session_client_private_key))
     
-
+    // Nice to left debugs and comments
     // console.log("Server public key: "+fg_ui8arr_to_hex(session_server_public_key)+"\n"
     //             +"Client pr. key   : "+fg_ui8arr_to_hex(session_client_private_key)+"\n"
     //             +"Client pub. key  : "+fg_ui8arr_to_hex(global_data.nacl_keys.publicKey));
@@ -88,16 +92,101 @@ function fg_decrypt_for_session(data) {
     return ret_data;
 }
 
+function set_setting(key, value, cb) {
 
-function logout() {
-    localStorage["session_id"] = null;
-    global_data.request_header = null;
-    global_data.session_params = null;
-    global_data.nacl_keys      = null;
-    global_data.is_admin       = false;
+    let cache_key     = "setting-cache-"+key;
+    let req_setings_set         = new PostUserSettingsSetRequest();
+    req_setings_set.header 		= global_data.request_header;
+
+    req_setings_set.key   = key;
+    req_setings_set.value = value;
+
+    // Save data
+    global_data.user_api.postUserSettingsSet({
+        'postUserSettingsSetRequest': req_setings_set
+    }, (perror,response, _) => {
+
+        cb(perror);
+
+
+        if (perror != null) {
+    
+            localStorage[cache_key] = null;
+
+        }else{
+
+            if (response.info == "Ok") {
+
+                localStorage[cache_key] = value
+                
+            }
+    
+        }
+
+
+
+    });
+
+}
+
+function get_setting(key, cb) {
+
+        let cache_key     = "setting-cache-"+key;
+        let cache_value   = localStorage[cache_key];
+        let have_in_cache = (cache_value != null)
+
+        if (have_in_cache) {
+
+            cb(null,cache_value);
+
+        }
+
+        let request    = new PostUserSettingsGetRequest();
+
+		request.key = key;
+		request.header   = global_data.request_header;
+		global_data.user_api.postUserSettingsGet({
+			'postUserSettingsGetRequest' : request
+		}, (perror,response, _ ) => {            
+
+            if (!have_in_cache) {
+
+                cb(perror,response.value)
+
+            } 
 
     
-    window.location.reload(false);
+            // If any error then reset the cache
+            // otherwise update the cache
+            if (perror) {                    
+                localStorage[cache_key] = null;
+            } else {
+                // Update the cache
+                localStorage[cache_key] = response.value;
+            }
+
+            
+		});
+    
+}
+
+
+
+function logout(cb) {
+    let request     = new PostLogoutRequest();
+    request.header  = global_data.request_header;
+    global_data.public_api.postLogout({
+        'postLogoutRequest' : request
+    }, (perror,response, data ) => {
+
+        if (perror == null) {
+            localStorage.clear();
+        }
+
+        cb(perror,response);
+       
+    });
+
 }
 
 function get_window_dimensions() {
@@ -136,3 +225,5 @@ exports.fg_encrypt_for_session  = fg_encrypt_for_session;
 exports.fg_decrypt_for_session  = fg_decrypt_for_session;
 exports.fg_ui8arr_to_str        = fg_ui8arr_to_str;
 exports.logout                  = logout;
+exports.get_setting             = get_setting;
+exports.set_setting             = set_setting;

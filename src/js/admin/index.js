@@ -3,7 +3,7 @@ import React 	from 'reactn'
 import DashBoard 	from './dashboard'
 import Users		from './users'
 import Reports		from './reports'
-import logoImg 				from '../../img/logo_admin.png'
+import logoImg 				from '../../svg/logo_admin.svg'
 import { exact } from 'prop-types'
 import etc 			from '../etc'
 import { PostAdminSysteminformationRequest } from '../api/src'
@@ -11,7 +11,7 @@ import OutsideClickHandler from '../components/OutsideClickHandler'
 import global_data from '../global'
 import Wait 	   from '../modals/wait'
 
-let Logo = ()=> <img src={logoImg} alt="sceptive" />
+let Logo = ()=> <img src={logoImg} alt="sceptive" style={{ height: '27px'}} />
 
 
 export default (props) => {	
@@ -75,7 +75,7 @@ export default (props) => {
 			<header className="admin">
 				<a className="hamburger-menu" onClick={() => setSideMenu(!sideMenu)}></a>
 				<div className="logo-wrap" >
-						<div className="logo"><Logo /> <span className="logo-brand">Forgiva Enterprise</span></div>
+						<div className="logo"><Logo /> </div>
 				</div>
 				{!fetchingSI &&
 				<div className="header-right">
@@ -86,7 +86,8 @@ export default (props) => {
 										<OutsideClickHandler onOutsideClick={() => { setDropMenu(null)}}>
 										<div className="dropdown-menu" id="dropdown-menu" role="menu">
 											<div className="dropdown-content">
-												<a onClick={() => { setDropMenu(null); etc.logout(); }} className="dropdown-item">
+												<a onClick={() => { setDropMenu(null);
+												 etc.logout((per,resp)=>{ window.location.reload(false);}); }} className="dropdown-item">
 													Logout
 												</a>
 											

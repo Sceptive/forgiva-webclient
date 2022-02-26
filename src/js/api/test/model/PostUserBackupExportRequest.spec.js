@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new IntegratorApi.OperationResult();
+    instance = new IntegratorApi.PostUserBackupExportRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,34 +47,22 @@
       object[property] = value;
   }
 
-  describe('OperationResult', function() {
-    it('should create an instance of OperationResult', function() {
-      // uncomment below and update the code to test OperationResult
-      //var instane = new IntegratorApi.OperationResult();
-      //expect(instance).to.be.a(IntegratorApi.OperationResult);
+  describe('PostUserBackupExportRequest', function() {
+    it('should create an instance of PostUserBackupExportRequest', function() {
+      // uncomment below and update the code to test PostUserBackupExportRequest
+      //var instane = new IntegratorApi.PostUserBackupExportRequest();
+      //expect(instance).to.be.a(IntegratorApi.PostUserBackupExportRequest);
     });
 
-    it('should have the property error (base name: "error")', function() {
-      // uncomment below and update the code to test the property error
-      //var instane = new IntegratorApi.OperationResult();
+    it('should have the property metadataGroupId (base name: "metadataGroupId")', function() {
+      // uncomment below and update the code to test the property metadataGroupId
+      //var instane = new IntegratorApi.PostUserBackupExportRequest();
       //expect(instance).to.be();
     });
 
-    it('should have the property info (base name: "info")', function() {
-      // uncomment below and update the code to test the property info
-      //var instane = new IntegratorApi.OperationResult();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property resultData (base name: "resultData")', function() {
-      // uncomment below and update the code to test the property resultData
-      //var instane = new IntegratorApi.OperationResult();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property affectedRecords (base name: "affectedRecords")', function() {
-      // uncomment below and update the code to test the property affectedRecords
-      //var instane = new IntegratorApi.OperationResult();
+    it('should have the property header (base name: "header")', function() {
+      // uncomment below and update the code to test the property header
+      //var instane = new IntegratorApi.PostUserBackupExportRequest();
       //expect(instance).to.be();
     });
 

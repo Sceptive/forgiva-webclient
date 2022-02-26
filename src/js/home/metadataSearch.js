@@ -6,13 +6,13 @@ import global_data from '../global'
 import FreeScrollBar from 'react-free-scrollbar'
 
 export default props => {
-	let [session, setSession] = React.useGlobal('session')
-	let [error, setError] = React.useState(null)
-	let [search, setSearch] = React.useState("")
-	let [result, setResult] = React.useState([])
-	let [modal, setModal] = React.useGlobal("modal")
+	let [session, setSession] 		= React.useGlobal('session')
+	let [error, setError] 			= React.useState(null)
+	let [search, setSearch] 		= React.useState("")
+	let [result, setResult] 		= React.useState([])
+	let [modal, setModal] 			= React.useGlobal("modal")
 	let [selectedMD, setSelectedMD] = React.useState(null)
-	let [searching, setSearching]         = React.useState(false)
+	let [searching, setSearching]   = React.useState(false)
 
 	
 
@@ -59,7 +59,7 @@ export default props => {
 
 	let generate = () => {
 		if(selectedMD != null)
-			setModal(<GeneratePassword metadataId={selectedMD.metadataId} />)
+			setModal(<GeneratePassword metadata={selectedMD} />)
 	}
 
 	return (<Modal title="Search"  desc="Please enter your search criteria."
@@ -67,7 +67,8 @@ export default props => {
 		<div className="field column">
 			<div className="control">
 				<input className="input search-input" value={search}
-					onChange={e => setSearch(e.target.value)} placeholder="search" autoFocus/>
+					onChange={e => setSearch(e.target.value)} 
+						placeholder="search" autoFocus/>
 			</div>
 		</div>
         <div style={{width: '100%', height: '300px'}}>
@@ -84,8 +85,12 @@ export default props => {
 				<tbody>
 				{result.map(metadata =>
                     <tr key={metadata.metadataId}  
-                    onDoubleClick={() => { setModal(<GeneratePassword metadataId={metadata.metadataId} />) }}
-                    onClick={() => setSelectedMD(metadata)} className={selectedMD == metadata ? "selectedrow" : "row"} >
+                    onDoubleClick={() => { 
+						setModal(<GeneratePassword metadata={metadata} />) 
+					}}
+                    onClick={() => setSelectedMD(metadata)} 
+						className={selectedMD == metadata ? 
+							"selectedrow" : "row"} >
 						<td>{metadata.host}</td>
 						<td>{metadata.account}</td>
 					</tr>

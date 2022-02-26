@@ -49,17 +49,54 @@ function shuffle(a) {
 
 export default props => {
 	let [showPassword, setShowPassword] = React.useState(false)
-	let [animalRows, setAnimalRows] = React.useState([])
-	let [modal, setModal] = React.useGlobal("modal")
-	let [isWaiting, setIsWaiting] = React.useState(false)
-	let [error, setError] = React.useState(null)
+	let [animalRows, setAnimalRows] 	= React.useState([])
+	let [modal, setModal] 				= React.useGlobal("modal")
+	let [isWaiting, setIsWaiting]		= React.useState(false)
+	let [error, setError] 				= React.useState(null)
 
 	React.useEffect(() => {
-		let randomAnimals = [[], [], [], []]
-		shuffle(animals).forEach((name, i) => {
-			randomAnimals[Math.ceil((i + 1) / 5) - 1].push(name)
-		})
-		setAnimalRows(randomAnimals)
+
+		etc.get_setting(global_data.settings_keys.settingsAds, 
+			(perror, value) => {
+
+			if (perror) {
+				if (perror.status == 401) {
+					setError("Invalid credentials.");
+				} else {
+					setError("API Error");
+				}
+			} else {
+				let do_not_scramble = (value === 'true')
+
+				let randomAnimals = [[], [], [], []];
+				let family		  = do_not_scramble ? 
+								animals : shuffle(animals);
+				family.forEach((name, i) => {
+					randomAnimals[Math.ceil((i + 1) / 5) - 1].push(name)
+				})
+
+				setAnimalRows(randomAnimals)
+
+			}  
+			
+		});
+
+
+		etc.get_setting(global_data.settings_keys.settingsPasnc, 
+			(perror, value) => {
+
+			if (perror) {
+				if (perror.status == 401) {
+					setError("Invalid credentials.");
+				} else {
+					setError("API Error");
+				}
+			} else {
+                setShowPassword(value === 'true')
+
+			}  
+			
+		});
 	}, [])
 
 
@@ -67,18 +104,26 @@ export default props => {
 
 		let req_nsr 		= new PostUserGenerateRequest();
 		req_nsr.header 		= global_data.request_header;
-		req_nsr.metadataId	= props.metadataId;
 
+
+		req_nsr.metadataId	= props.metadata.metadataId;
+
+
+		if (props.renewal && !(props.renewal.length === 0)) {
+			req_nsr.renewalDate = props.renewal;
+		}
 	
-		let masterKey_hash			   = fhash(global_data.session_params.hshAlg,
-			etc.fg_hex_to_ui8arr(global_data.session_params.hshSalt),
-			etc.fg_str_to_ui8arr(props.master));
-		req_nsr.masterKey				= etc.fg_encrypt_for_session(masterKey_hash);
+		if (props.master &&  !(props.master.length === 0)) {
+
+			let masterKey_hash	= 
+				fhash(global_data.session_params.hshAlg,
+					etc.fg_hex_to_ui8arr(global_data.session_params.hshSalt),
+					etc.fg_str_to_ui8arr(props.master));
+			req_nsr.masterKey	= etc.fg_encrypt_for_session(masterKey_hash);
+		}
 
 		req_nsr.visualConfirmation	= animal;
 	
-		// renewalDate ??
-
 		setIsWaiting(true)
 		// Push for generation
 
@@ -117,27 +162,34 @@ export default props => {
 	}
 
 	return (<Modal title={isWaiting ? "Generating" : "Visual Confirmation"} 
-								desc={isWaiting ? "Processing metadatas.." : "Please choose your favourite animal."} >
+								desc={isWaiting ? "Processing metadatas.." : 
+						"Please choose your favourite animal."} >
 		{isWaiting &&
 			<div className="panel-block">
 				<div className="progress">
 						<div className="spinner"></div>
 				</div>
 			</div>}
-		{error && <ErrorField close={() => setError(null)} >{error}</ErrorField>}
+		{error && <ErrorField close={() => setError(null)} >{error}
+				  </ErrorField>}
 
 		{(!error && !isWaiting) && <>
 			{animalRows.map((row,i)=>
 				<div key={i} className="columns" style={{margin: 3}}>
 					{row.map((name, i) =>
-						<div onClick={() => confirm(name)} key={name} className="column" style={{padding: 0}}>
-							<ReactSVG className="animal" src={animalImages[name]}></ReactSVG>
+						<div onClick={() => confirm(name)} 
+							 key={name} 
+							 className="column" 
+							 style={{padding: 0}}>
+							<ReactSVG className="animal" 
+										src={animalImages[name]}></ReactSVG>
 						</div>)}
 				</div>)}
 			<label className="checkbox">
-				<input type="checkbox" value={showPassword}
+				<input type="checkbox" checked={showPassword}
 					onChange={e => setShowPassword(e.target.value)} />
-				<div className="checkmark" onClick={() => setShowPassword(!showPassword)} ></div>
+				<div className="checkmark"  
+					 onClick={() => setShowPassword(!showPassword)} ></div>
 				Show generated password
 			</label>
 		</>}

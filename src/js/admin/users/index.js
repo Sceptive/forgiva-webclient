@@ -1,9 +1,7 @@
 import React 	from 'reactn'
 import SideMenu from './sideMenu'
 import HostList from './userList'
-import logoImg 	from '../../../img/logo.png'
-import Search 	from '../../modals/search';
-let Logo = ()=> <img src={logoImg} alt="sceptive" />
+
 
 
 export default (props) => {	

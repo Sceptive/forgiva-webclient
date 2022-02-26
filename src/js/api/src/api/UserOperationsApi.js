@@ -14,6 +14,8 @@
 
 import ApiClient from "../ApiClient";
 import OperationResult from '../model/OperationResult';
+import PostUserBackupExportRequest from '../model/PostUserBackupExportRequest';
+import PostUserBackupImportRequest from '../model/PostUserBackupImportRequest';
 import PostUserGenerateRequest from '../model/PostUserGenerateRequest';
 import PostUserGenerateResponse from '../model/PostUserGenerateResponse';
 import PostUserMetadataAddRequest from '../model/PostUserMetadataAddRequest';
@@ -51,6 +53,86 @@ export default class UserOperationsApi {
         this.apiClient = apiClient || ApiClient.instance;
     }
 
+
+    /**
+     * Callback function to receive the result of the postUserBackupExport operation.
+     * @callback module:api/UserOperationsApi~postUserBackupExportCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/OperationResult} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Exports metadatas as backup file
+     * This service exports metadatas both as group and whole. If succeeds returns base64 encoded string of JSON data in resultData field in operationResult object. If no metadata group ID is specified then returns all of user's metadatas. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/PostUserBackupExportRequest} opts.postUserBackupExportRequest 
+     * @param {module:api/UserOperationsApi~postUserBackupExportCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/OperationResult}
+     */
+    postUserBackupExport(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['postUserBackupExportRequest'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = OperationResult;
+      return this.apiClient.callApi(
+        '/user/backup/export', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postUserBackupImport operation.
+     * @callback module:api/UserOperationsApi~postUserBackupImportCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/OperationResult} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Imports metadatas from backup file
+     * This service imports metadatas exported from /user/backup/export service. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/PostUserBackupImportRequest} opts.postUserBackupImportRequest 
+     * @param {module:api/UserOperationsApi~postUserBackupImportCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/OperationResult}
+     */
+    postUserBackupImport(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['postUserBackupImportRequest'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = OperationResult;
+      return this.apiClient.callApi(
+        '/user/backup/import', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
 
     /**
      * Callback function to receive the result of the postUserGenerate operation.
