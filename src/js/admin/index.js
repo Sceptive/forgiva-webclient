@@ -101,9 +101,11 @@ export default (props) => {
 		
 				{!fetchingSI &&
 				<>
-				<div className={"header-right "+(selectedAdminTab == "reports" ? "active" : "") }>				
+				{/*
+					//TODO: Reporting will be implemented
+				 <div className={"header-right "+(selectedAdminTab == "reports" ? "active" : "") }>				
 					<a className="top-menu-item " onClick={()=> {setSelectedAdminTab("reports")}}>Reports</a>
-				</div>
+				</div> */}
 				<div className={"header-right "+(selectedAdminTab == "users" ? "active" : "") }>				
 					<a className="top-menu-item " onClick={()=> {setSelectedAdminTab("users")}}>Users</a>
 				</div>
@@ -123,9 +125,10 @@ export default (props) => {
 			{!fetchingSI && selectedAdminTab && selectedAdminTab == "users" &&
 				<Users/>
 			}
-			{!fetchingSI && selectedAdminTab && selectedAdminTab == "reports" &&
+			{/* //TODO: Reporting will be implemented
+				{!fetchingSI && selectedAdminTab && selectedAdminTab == "reports" &&
 				<Reports/>
-			}
+			} */}
 
 			
 		</div>

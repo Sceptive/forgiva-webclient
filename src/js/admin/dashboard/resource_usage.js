@@ -103,6 +103,9 @@ export default (props) => {
 
                 new DonutChart(document.getElementById("chart_disk_data"), {data: diskdata,
                     options: { "resizable": true,
+                    "toolbar": {
+                        "enabled": false
+                    },
                     "donut": {
                         "center": {
                             "label": "Total",
@@ -138,6 +141,9 @@ export default (props) => {
 
                 new DonutChart(document.getElementById("chart_memory_data"), {data: memorydata,
                     options: { "resizable": true,
+                    "toolbar": {
+                        "enabled": false
+                    },
                     "donut": {
                         "center": {
                             "label": "Total",
@@ -172,6 +178,9 @@ export default (props) => {
 
                 new DonutChart(document.getElementById("chart_cpu_data_current"), {data: cpudata,
                     options: { "resizable": true,
+                    "toolbar": {
+                        "enabled": false
+                    },
                     "donut": {
                         "center": {
                             "numberFontSize": empty_f,
@@ -228,6 +237,9 @@ export default (props) => {
 
                     new DonutChart(document.getElementById("chart_cpu_data_24hours"), {data: cpudata_24hours,
                         options: { "resizable": true,
+                        "toolbar": {
+                            "enabled": false
+                        },
                         "donut": {
                             "center": {
                                 "numberFontSize": empty_f,

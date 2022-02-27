@@ -76,7 +76,7 @@ the build environment.
 
 
 ```
-$ docker run -ti -p 8443:8443 -v <webclient-directory>/dist:/webclient -e FORGIVA_WC_ROOT_DIR=/webclient  forgiva_integrator:latest
+$ docker run -ti -p 8443:8443 -v <webclient-directory>/dist:/webclient -e FORGIVA_WC_ROOT_DIR=/webclient  forgiva-integrator:latest
 ```
 
 And automate building with **watch** parameter of build.sh
