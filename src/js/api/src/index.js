@@ -1,6 +1,6 @@
 /**
  * IntegratorAPI
- * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It can be used by any 3rd party clients.
+ * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It  can be used by any 3rd party clients. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: root@sceptive.com
@@ -57,6 +57,8 @@ import PostLoginResponse from './model/PostLoginResponse';
 import PostLogoutRequest from './model/PostLogoutRequest';
 import PostNewSessionRequest from './model/PostNewSessionRequest';
 import PostNewSessionResponse from './model/PostNewSessionResponse';
+import PostUser2faDisableRequest from './model/PostUser2faDisableRequest';
+import PostUser2faEnableRequest from './model/PostUser2faEnableRequest';
 import PostUserBackupExportRequest from './model/PostUserBackupExportRequest';
 import PostUserBackupImportRequest from './model/PostUserBackupImportRequest';
 import PostUserGenerateRequest from './model/PostUserGenerateRequest';
@@ -387,6 +389,18 @@ export {
      * @property {module:model/PostNewSessionResponse}
      */
     PostNewSessionResponse,
+
+    /**
+     * The PostUser2faDisableRequest model constructor.
+     * @property {module:model/PostUser2faDisableRequest}
+     */
+    PostUser2faDisableRequest,
+
+    /**
+     * The PostUser2faEnableRequest model constructor.
+     * @property {module:model/PostUser2faEnableRequest}
+     */
+    PostUser2faEnableRequest,
 
     /**
      * The PostUserBackupExportRequest model constructor.

@@ -1,6 +1,6 @@
 /**
  * IntegratorAPI
- * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It can be used by any 3rd party clients.
+ * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It  can be used by any 3rd party clients. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: root@sceptive.com
@@ -113,7 +113,7 @@ Metadata.prototype['lastRenewal'] = undefined;
 Metadata.prototype['complexity'] = undefined;
 
 /**
- * Indicates whether password generated before or not. If not password generation process should ensure that user is entering master password right.
+ * Indicates whether password generated before or not. If not password generation process should ensure  that user is entering master password right. 
  * @member {Boolean} generatedBefore
  */
 Metadata.prototype['generatedBefore'] = undefined;

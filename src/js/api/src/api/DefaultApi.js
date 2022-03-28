@@ -1,6 +1,6 @@
 /**
  * IntegratorAPI
- * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It can be used by any 3rd party clients.
+ * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It  can be used by any 3rd party clients. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: root@sceptive.com
@@ -13,6 +13,7 @@
 
 
 import ApiClient from "../ApiClient";
+import OperationResult from '../model/OperationResult';
 import PostLogin2faRequest from '../model/PostLogin2faRequest';
 import PostLogin2faResponse from '../model/PostLogin2faResponse';
 import PostLoginRequest from '../model/PostLoginRequest';
@@ -20,6 +21,8 @@ import PostLoginResponse from '../model/PostLoginResponse';
 import PostLogoutRequest from '../model/PostLogoutRequest';
 import PostNewSessionRequest from '../model/PostNewSessionRequest';
 import PostNewSessionResponse from '../model/PostNewSessionResponse';
+import PostUser2faDisableRequest from '../model/PostUser2faDisableRequest';
+import PostUser2faEnableRequest from '../model/PostUser2faEnableRequest';
 
 /**
 * Default service.
@@ -90,7 +93,7 @@ export default class DefaultApi {
 
     /**
      * Login with two-factor-authentication
-     * Two-factor-authentication (2FA) code delivery web service. Not required by default if did not configured on server side.
+     * Two-factor-authentication (2FA) code delivery web service. Not required by default if did not configured  on server side. 
      * @param {Object} opts Optional parameters
      * @param {module:model/PostLogin2faRequest} opts.postLogin2faRequest 
      * @param {module:api/DefaultApi~postLogin2faCallback} callback The callback function, accepting three arguments: error, data, response
@@ -169,7 +172,7 @@ export default class DefaultApi {
 
     /**
      * Initialization or validation of a session
-     * This service initializes session or validates it (by checking header object) and provides server configuration values to the client.
+     * This service initializes session or validates it (by checking header object) and provides server  configuration values to the client. 
      * @param {Object} opts Optional parameters
      * @param {module:model/PostNewSessionRequest} opts.postNewSessionRequest 
      * @param {module:api/DefaultApi~postNewSessionCallback} callback The callback function, accepting three arguments: error, data, response
@@ -194,6 +197,86 @@ export default class DefaultApi {
       let returnType = PostNewSessionResponse;
       return this.apiClient.callApi(
         '/new_session', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postUser2faDisable operation.
+     * @callback module:api/DefaultApi~postUser2faDisableCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/OperationResult} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Disables 2FA
+     * Disables 2FA login with relating validation code. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/PostUser2faDisableRequest} opts.postUser2faDisableRequest 
+     * @param {module:api/DefaultApi~postUser2faDisableCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/OperationResult}
+     */
+    postUser2faDisable(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['postUser2faDisableRequest'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = OperationResult;
+      return this.apiClient.callApi(
+        '/user/2fa/disable', 'POST',
+        pathParams, queryParams, headerParams, formParams, postBody,
+        authNames, contentTypes, accepts, returnType, null, callback
+      );
+    }
+
+    /**
+     * Callback function to receive the result of the postUser2faEnable operation.
+     * @callback module:api/DefaultApi~postUser2faEnableCallback
+     * @param {String} error Error message, if any.
+     * @param {module:model/OperationResult} data The data returned by the service call.
+     * @param {String} response The complete HTTP response.
+     */
+
+    /**
+     * Enables 2FA
+     * Enables 2FA login with setup key and relating validation code. Validation code is generated with soft token  generator app. such as Google Authenticator. 
+     * @param {Object} opts Optional parameters
+     * @param {module:model/PostUser2faEnableRequest} opts.postUser2faEnableRequest 
+     * @param {module:api/DefaultApi~postUser2faEnableCallback} callback The callback function, accepting three arguments: error, data, response
+     * data is of type: {@link module:model/OperationResult}
+     */
+    postUser2faEnable(opts, callback) {
+      opts = opts || {};
+      let postBody = opts['postUser2faEnableRequest'];
+
+      let pathParams = {
+      };
+      let queryParams = {
+      };
+      let headerParams = {
+      };
+      let formParams = {
+      };
+
+      let authNames = [];
+      let contentTypes = ['application/json'];
+      let accepts = ['application/json'];
+      let returnType = OperationResult;
+      return this.apiClient.callApi(
+        '/user/2fa/enable', 'POST',
         pathParams, queryParams, headerParams, formParams, postBody,
         authNames, contentTypes, accepts, returnType, null, callback
       );

@@ -1,6 +1,6 @@
 /**
  * IntegratorAPI
- * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It can be used by any 3rd party clients.
+ * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It  can be used by any 3rd party clients. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: root@sceptive.com
@@ -86,7 +86,7 @@ MetadataGroup.prototype['groupName'] = undefined;
 MetadataGroup.prototype['parentGroupId'] = undefined;
 
 /**
- * Description of the group such as 'Internal mail accounts' or '3rd party CRM application accounts'.
+ * Description of the group such as 'Internal mail accounts' or '3rd party CRM application accounts'. 
  * @member {String} groupDescription
  */
 MetadataGroup.prototype['groupDescription'] = undefined;

@@ -50,7 +50,15 @@ export default props => {
                                 setSelectedTab("change-password")
                             }}>Change Password</a>
                     </div>
-                   
+                    <div className={
+                            "tab-menu-item-parent "
+                                +(selectedTab == "twofa" 
+                                                        ? "active" : "") }>				
+                        <a className="tab-menu-item " 
+                            onClick={()=> {
+                                setSelectedTab("twofa")
+                            }}>Two Factor Authentication</a>
+                    </div>
                 </div>
                  {loading &&
                  <>

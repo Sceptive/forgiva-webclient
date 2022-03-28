@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new IntegratorApi.PostAdminApplicationRemoveRequest();
+    instance = new IntegratorApi.PostUser2faDisableRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,22 +47,22 @@
       object[property] = value;
   }
 
-  describe('PostAdminApplicationRemoveRequest', function() {
-    it('should create an instance of PostAdminApplicationRemoveRequest', function() {
-      // uncomment below and update the code to test PostAdminApplicationRemoveRequest
-      //var instane = new IntegratorApi.PostAdminApplicationRemoveRequest();
-      //expect(instance).to.be.a(IntegratorApi.PostAdminApplicationRemoveRequest);
+  describe('PostUser2faDisableRequest', function() {
+    it('should create an instance of PostUser2faDisableRequest', function() {
+      // uncomment below and update the code to test PostUser2faDisableRequest
+      //var instane = new IntegratorApi.PostUser2faDisableRequest();
+      //expect(instance).to.be.a(IntegratorApi.PostUser2faDisableRequest);
     });
 
-    it('should have the property applicationId (base name: "applicationId")', function() {
-      // uncomment below and update the code to test the property applicationId
-      //var instane = new IntegratorApi.PostAdminApplicationRemoveRequest();
+    it('should have the property validationCode (base name: "validationCode")', function() {
+      // uncomment below and update the code to test the property validationCode
+      //var instane = new IntegratorApi.PostUser2faDisableRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property header (base name: "header")', function() {
       // uncomment below and update the code to test the property header
-      //var instane = new IntegratorApi.PostAdminApplicationRemoveRequest();
+      //var instane = new IntegratorApi.PostUser2faDisableRequest();
       //expect(instance).to.be();
     });
 

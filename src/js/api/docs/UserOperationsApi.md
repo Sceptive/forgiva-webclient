@@ -27,7 +27,7 @@ Method | HTTP request | Description
 
 Exports metadatas as backup file
 
-This service exports metadatas both as group and whole. If succeeds returns base64 encoded string of JSON data in resultData field in operationResult object. If no metadata group ID is specified then returns all of user&#39;s metadatas. 
+This service exports metadatas both as group and whole. If succeeds returns base64 encoded string of JSON  data in resultData field in operationResult object. If no metadata group ID is specified then  returns all of user&#39;s metadatas. 
 
 ### Example
 

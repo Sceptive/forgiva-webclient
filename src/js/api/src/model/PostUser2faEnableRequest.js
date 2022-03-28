@@ -15,18 +15,18 @@ import ApiClient from '../ApiClient';
 import Header from './Header';
 
 /**
- * The PostUserMetadataHostRequest model module.
- * @module model/PostUserMetadataHostRequest
+ * The PostUser2faEnableRequest model module.
+ * @module model/PostUser2faEnableRequest
  * @version 1.0
  */
-class PostUserMetadataHostRequest {
+class PostUser2faEnableRequest {
     /**
-     * Constructs a new <code>PostUserMetadataHostRequest</code>.
-     * @alias module:model/PostUserMetadataHostRequest
+     * Constructs a new <code>PostUser2faEnableRequest</code>.
+     * @alias module:model/PostUser2faEnableRequest
      */
     constructor() { 
         
-        PostUserMetadataHostRequest.initialize(this);
+        PostUser2faEnableRequest.initialize(this);
     }
 
     /**
@@ -38,18 +38,21 @@ class PostUserMetadataHostRequest {
     }
 
     /**
-     * Constructs a <code>PostUserMetadataHostRequest</code> from a plain JavaScript object, optionally creating a new instance.
+     * Constructs a <code>PostUser2faEnableRequest</code> from a plain JavaScript object, optionally creating a new instance.
      * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
      * @param {Object} data The plain JavaScript object bearing properties of interest.
-     * @param {module:model/PostUserMetadataHostRequest} obj Optional instance to populate.
-     * @return {module:model/PostUserMetadataHostRequest} The populated <code>PostUserMetadataHostRequest</code> instance.
+     * @param {module:model/PostUser2faEnableRequest} obj Optional instance to populate.
+     * @return {module:model/PostUser2faEnableRequest} The populated <code>PostUser2faEnableRequest</code> instance.
      */
     static constructFromObject(data, obj) {
         if (data) {
-            obj = obj || new PostUserMetadataHostRequest();
+            obj = obj || new PostUser2faEnableRequest();
 
-            if (data.hasOwnProperty('filter')) {
-                obj['filter'] = ApiClient.convertToType(data['filter'], 'String');
+            if (data.hasOwnProperty('sotpCode')) {
+                obj['sotpCode'] = ApiClient.convertToType(data['sotpCode'], 'String');
+            }
+            if (data.hasOwnProperty('validationCode')) {
+                obj['validationCode'] = ApiClient.convertToType(data['validationCode'], 'String');
             }
             if (data.hasOwnProperty('header')) {
                 obj['header'] = Header.constructFromObject(data['header']);
@@ -62,19 +65,24 @@ class PostUserMetadataHostRequest {
 }
 
 /**
- * @member {String} filter
+ * @member {String} sotpCode
  */
-PostUserMetadataHostRequest.prototype['filter'] = undefined;
+PostUser2faEnableRequest.prototype['sotpCode'] = undefined;
+
+/**
+ * @member {String} validationCode
+ */
+PostUser2faEnableRequest.prototype['validationCode'] = undefined;
 
 /**
  * @member {module:model/Header} header
  */
-PostUserMetadataHostRequest.prototype['header'] = undefined;
+PostUser2faEnableRequest.prototype['header'] = undefined;
 
 
 
 
 
 
-export default PostUserMetadataHostRequest;
+export default PostUser2faEnableRequest;
 

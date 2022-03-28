@@ -1,6 +1,6 @@
 /**
  * IntegratorAPI
- * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It can be used by any 3rd party clients.
+ * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It  can be used by any 3rd party clients. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: root@sceptive.com
@@ -64,7 +64,7 @@ export default class UserOperationsApi {
 
     /**
      * Exports metadatas as backup file
-     * This service exports metadatas both as group and whole. If succeeds returns base64 encoded string of JSON data in resultData field in operationResult object. If no metadata group ID is specified then returns all of user's metadatas. 
+     * This service exports metadatas both as group and whole. If succeeds returns base64 encoded string of JSON  data in resultData field in operationResult object. If no metadata group ID is specified then  returns all of user's metadatas. 
      * @param {Object} opts Optional parameters
      * @param {module:model/PostUserBackupExportRequest} opts.postUserBackupExportRequest 
      * @param {module:api/UserOperationsApi~postUserBackupExportCallback} callback The callback function, accepting three arguments: error, data, response

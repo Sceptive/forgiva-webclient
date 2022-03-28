@@ -1,6 +1,6 @@
 /**
  * IntegratorAPI
- * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It can be used by any 3rd party clients.
+ * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It  can be used by any 3rd party clients. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: root@sceptive.com
@@ -79,13 +79,13 @@ class PostNewSessionResponse {
 PostNewSessionResponse.prototype['logonState'] = undefined;
 
 /**
- * Hashing algorithm chosen by server required to get used by client to provide hashed data to the server.
+ * Hashing algorithm chosen by server required to get used by client to provide hashed data to  the server. 
  * @member {String} hshAlg
  */
 PostNewSessionResponse.prototype['hshAlg'] = undefined;
 
 /**
- * Unique salt value tied with session which will be required to get used with hash algorithm on the client side.
+ * Unique salt value tied with session which will be required to get used with hash algorithm  on the client side. 
  * @member {String} hshSalt
  */
 PostNewSessionResponse.prototype['hshSalt'] = undefined;

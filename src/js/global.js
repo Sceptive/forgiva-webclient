@@ -8,7 +8,7 @@ const global_data =  {
     admin_api:      null,
     userInfo:       null,
     settings_keys: {
-        settingsTwoFa : "twoFARequired",
+        settings2faEnabled: "2fa_enabled",
         settingsAds:    "animals_do_not_scramble", // Do not scramble animal positions randomly (Less secure)
         settingsMui:    "masterkey_use_ignored",  // Do not use masterkey (Less secure)
         settingsMao:    "masterkey_ask_once",       // Ask master key once when regenerating password

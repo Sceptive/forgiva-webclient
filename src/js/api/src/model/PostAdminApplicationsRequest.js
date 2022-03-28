@@ -1,6 +1,6 @@
 /**
  * IntegratorAPI
- * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It can be used by any 3rd party clients.
+ * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It  can be used by any 3rd party clients. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: root@sceptive.com
@@ -73,7 +73,7 @@ class PostAdminApplicationsRequest {
 PostAdminApplicationsRequest.prototype['header'] = undefined;
 
 /**
- * If Host id is null getting whole applications.If there is a specified Host id just fetch it's applications.
+ * If Host id is null getting whole applications.If there is a specified Host id just fetch  it's applications. 
  * @member {Number} hostId
  */
 PostAdminApplicationsRequest.prototype['hostId'] = undefined;

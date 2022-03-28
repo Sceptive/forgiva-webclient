@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**postLogin2fa**](DefaultApi.md#postLogin2fa) | **POST** /login2fa | Login with two-factor-authentication
 [**postLogout**](DefaultApi.md#postLogout) | **POST** /logout | Logout
 [**postNewSession**](DefaultApi.md#postNewSession) | **POST** /new_session | Initialization or validation of a session
+[**postUser2faDisable**](DefaultApi.md#postUser2faDisable) | **POST** /user/2fa/disable | Disables 2FA
+[**postUser2faEnable**](DefaultApi.md#postUser2faEnable) | **POST** /user/2fa/enable | Enables 2FA
 
 
 
@@ -64,7 +66,7 @@ No authorization required
 
 Login with two-factor-authentication
 
-Two-factor-authentication (2FA) code delivery web service. Not required by default if did not configured on server side.
+Two-factor-authentication (2FA) code delivery web service. Not required by default if did not configured  on server side. 
 
 ### Example
 
@@ -158,7 +160,7 @@ No authorization required
 
 Initialization or validation of a session
 
-This service initializes session or validates it (by checking header object) and provides server configuration values to the client.
+This service initializes session or validates it (by checking header object) and provides server  configuration values to the client. 
 
 ### Example
 
@@ -188,6 +190,100 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PostNewSessionResponse**](PostNewSessionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## postUser2faDisable
+
+> OperationResult postUser2faDisable(opts)
+
+Disables 2FA
+
+Disables 2FA login with relating validation code. 
+
+### Example
+
+```javascript
+import IntegratorApi from 'integrator_api';
+
+let apiInstance = new IntegratorApi.DefaultApi();
+let opts = {
+  'postUser2faDisableRequest': new IntegratorApi.PostUser2faDisableRequest() // PostUser2faDisableRequest | 
+};
+apiInstance.postUser2faDisable(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postUser2faDisableRequest** | [**PostUser2faDisableRequest**](PostUser2faDisableRequest.md)|  | [optional] 
+
+### Return type
+
+[**OperationResult**](OperationResult.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+## postUser2faEnable
+
+> OperationResult postUser2faEnable(opts)
+
+Enables 2FA
+
+Enables 2FA login with setup key and relating validation code. Validation code is generated with soft token  generator app. such as Google Authenticator. 
+
+### Example
+
+```javascript
+import IntegratorApi from 'integrator_api';
+
+let apiInstance = new IntegratorApi.DefaultApi();
+let opts = {
+  'postUser2faEnableRequest': new IntegratorApi.PostUser2faEnableRequest() // PostUser2faEnableRequest | 
+};
+apiInstance.postUser2faEnable(opts, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **postUser2faEnableRequest** | [**PostUser2faEnableRequest**](PostUser2faEnableRequest.md)|  | [optional] 
+
+### Return type
+
+[**OperationResult**](OperationResult.md)
 
 ### Authorization
 

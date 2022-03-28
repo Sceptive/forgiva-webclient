@@ -103,6 +103,8 @@ export default props => {
 					if (postLoginResponse.twoFARequired == true) {
 
 						setRequires2fa(true);
+						setError(null)
+
 
 
 					} else {
@@ -136,7 +138,7 @@ export default props => {
 
 		let request    = new PostLogin2faRequest();
 
-		request.twoFACode = code;
+		request.twoFACode = etc.fg_encrypt_for_session(etc.fg_str_to_ui8arr(code))
 		request.header = global_data.request_header;
 		
 		setIsLoggingIn(true);

@@ -1,6 +1,6 @@
 /**
  * IntegratorAPI
- * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It can be used by any 3rd party clients.
+ * Forgiva Integrator API containing whole operations between Forgiva SuperClient and Integrator server traffic. It  can be used by any 3rd party clients. 
  *
  * The version of the OpenAPI document: 1.0
  * Contact: root@sceptive.com
@@ -85,7 +85,7 @@ OperationResult.prototype['info'] = undefined;
 OperationResult.prototype['resultData'] = undefined;
 
 /**
- * In case of any data operation this returns id's of records. On adding new data this returns new record ids
+ * In case of any data operation this returns id's of records. On adding new data this returns new  record ids 
  * @member {Array.<String>} affectedRecords
  */
 OperationResult.prototype['affectedRecords'] = undefined;

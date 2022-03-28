@@ -76,8 +76,9 @@ form {
     color: #FFFFFF;
     background-color: #3D70B2 !important;
     border-radius: 0;
-
 }
+
+
 .button:not(.cancel-button):hover {
     color: #fff;
 }
